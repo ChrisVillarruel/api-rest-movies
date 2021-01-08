@@ -14,4 +14,4 @@ class Classification(models.Model):
         ordering = ['classification_id']
 
     def __str__(self):
-        return f'{self.classification_id}: {self.classification_name.upper()}, {self.classification_desc}'
+        return f'{self.classification_name.upper()}'

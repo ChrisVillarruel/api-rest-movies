@@ -6,6 +6,7 @@ create table tbl_movie_category(
     unique u_category(category_name)
 );CREATE DATABASE `moviesdb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 
+alter table tbl_movie_category modify category_desc varchar(250);
 
 create table tbl_classification(
     classification_id int unsigned auto_increment,

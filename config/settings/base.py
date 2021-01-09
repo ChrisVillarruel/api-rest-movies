@@ -49,6 +49,7 @@ LOCAL_APPS = [
 
 # third apps
 THIRD_APPS = [
+    'rest_framework'
 ]
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS

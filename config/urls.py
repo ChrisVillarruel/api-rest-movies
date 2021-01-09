@@ -19,4 +19,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('classification/', include('apps.api_classification.urls')),
+    path('category/', include('apps.api_movie_category.urls')),
 ]

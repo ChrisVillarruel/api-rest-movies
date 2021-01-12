@@ -17,11 +17,11 @@ from apps.api_movie_category.models import MovieCategory
 class Movies(models.Model):
     movie_id = models.AutoField(primary_key=True)
     name_movie = models.CharField(max_length=100)
-    lauch_year = models.CharField(max_length=4)
+    launch_year = models.IntegerField()
     sinopsis = models.CharField(max_length=255)
     duration = models.CharField(max_length=20)
-    category = models.ForeignKey(MovieCategory, on_delete=models.CASCADE)
-    classification = models.ForeignKey(Classification, on_delete=models.CASCADE)
+    category = models.ForeignKey(MovieCategory, on_delete=models.CASCADE, related_name='category')
+    classification = models.ForeignKey(Classification, on_delete=models.CASCADE, related_name='classification')
 
     class Meta:
         managed = False
@@ -31,4 +31,4 @@ class Movies(models.Model):
         ordering = ['movie_id']
 
     def __str__(self):
-        return f'{self.name_movie.title()}, {self.lauch_year}, {self.duration} Minutos'
+        return f'{self.name_movie.title()}, {self.launch_year}, {self.duration}'

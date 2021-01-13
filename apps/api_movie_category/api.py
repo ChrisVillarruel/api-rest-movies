@@ -8,14 +8,18 @@ from .serializers import CategorySerializers
 
 
 # mostrar error de validación
-def msg_error(error, detail=None):
+def msg_error(message, status, code, detail=None):
     if detail is None:
-        detail = 'Sin descripción'
+        detail = 'Error no detallado'
 
     msg_error = {
-        'error': error,
-        'detail': detail,
-        'date': datetime.now().strftime("%A, %d. %B %Y %I:%M %p")
+        'error': {
+            'message': message,
+            'status': status,
+            'code': code,
+            'date': datetime.now().strftime("%d-%m-%Y"),
+            'details': detail
+        }
     }
     return msg_error
 
@@ -36,11 +40,11 @@ class CategoryMoviesAPI(APIView):
         if serializer.is_valid():
             category_instance = serializer.save()
             msg_success = {
-                'success': f'Categoria {category_instance.category_name} creada exitosamente'}
+                'success': f'La Categoria {category_instance.category_name} creada exitosamente'}
             return Response(msg_success, status=status.HTTP_201_CREATED)
 
         # error de validaciones
-        error = msg_error('Error de Validación', serializer.errors)
+        error = msg_error('Error de validación', 'BAD_REQUEST', 400, serializer.errors)
         return Response(error, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -59,8 +63,8 @@ class CategoryMoviesDetailAPI(APIView):
             serializer = CategorySerializers(instance=query_set)
             return Response(serializer.data, status=status.HTTP_200_OK)
 
-        error = msg_error('Categoria no encontrada')
-        return Response(error, status=status.HTTP_400_BAD_REQUEST)
+        error = msg_error('Categoria no encontrada', 'NOT_FOUND', 404)
+        return Response(error, status=status.HTTP_404_NOT_FOUND)
 
     # actualizar categoria
     def put(self, request, pk=None):
@@ -73,16 +77,16 @@ class CategoryMoviesDetailAPI(APIView):
             if serializer.is_valid():
                 category_instance = serializer.save()
                 msg_success = {
-                    'success': f'Categoria {category_instance.category_name} actualizada exitosamente'}
+                    'success': f'La Categoria {category_instance.category_name} actualizada exitosamente'}
                 return Response(msg_success, status=status.HTTP_200_OK)
 
             # Error de validación
-            error = msg_error('Error de Validación', serializer.errors)
+            error = msg_error('Error de validación', 'BAD_REQUEST', 400, serializer.errors)
             return Response(error, status=status.HTTP_400_BAD_REQUEST)
 
         # categoria no encontrada
-        error = msg_error('Categoria no encontrada')
-        return Response(error, status=status.HTTP_400_BAD_REQUEST)
+        error = msg_error('Categoria no encontrada', 'NOT_FOUND', 404)
+        return Response(error, status=status.HTTP_404_NOT_FOUND)
 
     # eliminar Categoria
     def delete(self, request, pk=None):
@@ -91,9 +95,9 @@ class CategoryMoviesDetailAPI(APIView):
         if query_set is not None:
             query_set.delete()
             msg_success = {
-                'success': f'Categoria {query_set.category_name} eliminada exitosamente'}
+                'success': f'La Categoria {query_set.category_name} eliminada exitosamente'}
             return Response(msg_success, status=status.HTTP_200_OK)
 
         # categoria no encontrada
-        error = msg_error('Categoria no encontrada')
-        return Response(error, status=status.HTTP_400_BAD_REQUEST)
+        error = msg_error('Categoria no encontrada', 'NOT_FOUND', 404)
+        return Response(error, status=status.HTTP_404_NOT_FOUND)

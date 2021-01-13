@@ -9,14 +9,18 @@ from .serializers import MoviesSerializer, MoviesDetailSerializer
 # mostrar error de validación
 
 
-def msg_error(error, detail=None):
+def msg_error(message, status, code, detail=None):
     if detail is None:
-        detail = 'Sin descripción'
+        detail = 'Error no detallado'
 
     msg_error = {
-        'error': error,
-        'detail': detail,
-        'date': datetime.now().strftime("%A, %d. %B %Y %I:%M %p")
+        'error': {
+            'message': message,
+            'status': status,
+            'code': code,
+            'date': datetime.now().strftime("%d-%m-%Y"),
+            'details': detail
+        }
     }
     return msg_error
 
@@ -37,7 +41,7 @@ class MoviesAPI(APIView):
                 'success': f'La Pelicula {movies_instance.name_movie} creada exitosamente'}
             return Response(msg_success, status=status.HTTP_201_CREATED)
 
-        error = msg_error('Error de Validación', serializer.errors)
+        error = msg_error('Error de validación', 'BAD_REQUEST', 400, serializer.errors)
         return Response(error, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -55,8 +59,8 @@ class MoviesDetailAPI(APIView):
             serializer = MoviesDetailSerializer(instance=query_set)
             return Response(serializer.data, status=status.HTTP_200_OK)
 
-        error = msg_error('Pelicula no encontrada')
-        return Response(error, status=status.HTTP_400_BAD_REQUEST)
+        error = msg_error('Pelicula no encontrada', 'NOT_FOUND', 404)
+        return Response(error, status=status.HTTP_404_NOT_FOUND)
 
     # update
     def put(self, request, pk=None):
@@ -73,11 +77,11 @@ class MoviesDetailAPI(APIView):
                 return Response(msg_success, status=status.HTTP_200_OK)
 
             # error de validaciones
-            error = msg_error('Error de Validación', serializer.errors)
+            error = msg_error('Error de validación', 'BAD_REQUEST', 400, serializer.errors)
             return Response(error, status=status.HTTP_400_BAD_REQUEST)
 
-        error = msg_error('Pelicula no encontrada')
-        return Response(error, status=status.HTTP_400_BAD_REQUEST)
+        error = msg_error('Pelicula no encontrada', 'NOT_FOUND', 404)
+        return Response(error, status=status.HTTP_404_NOT_FOUND)
 
     # partial update
     def patch(self, request, pk=None):
@@ -94,11 +98,11 @@ class MoviesDetailAPI(APIView):
                 return Response(msg_success, status=status.HTTP_200_OK)
 
             # error de validaciones
-            error = msg_error('Error de Validación', serializer.errors)
+            error = msg_error('Error de validación', 'BAD_REQUEST', 400, serializer.errors)
             return Response(error, status=status.HTTP_400_BAD_REQUEST)
 
-        error = msg_error('Pelicula no encontrada')
-        return Response(error, status=status.HTTP_400_BAD_REQUEST)
+        error = msg_error('Pelicula no encontrada', 'NOT_FOUND', 404)
+        return Response(error, status=status.HTTP_404_NOT_FOUND)
 
     # delete
     def delete(self, request, pk=None):
@@ -110,5 +114,5 @@ class MoviesDetailAPI(APIView):
                 'success': f'La Pelicula {movies_instance.name_movie} fue eliminada exitosamente'}
             return Response(msg_success, status=status.HTTP_200_OK)
 
-        error = msg_error('Pelicula no encontrada')
-        return Response(error, status=status.HTTP_400_BAD_REQUEST)
+        error = msg_error('Pelicula no encontrada', 'NOT_FOUND', 404)
+        return Response(error, status=status.HTTP_404_NOT_FOUND)

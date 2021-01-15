@@ -46,7 +46,6 @@ LOCAL_APPS = [
     'apps.api_movie_category',
     'apps.api_classification',
     'apps.api_movies',
-    'apps.authentication'
 ]
 
 # third apps
@@ -55,12 +54,6 @@ THIRD_APPS = [
 ]
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
-
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'apps.authentication.backends.JWTAuthentication',
-    )
-}
 
 
 MIDDLEWARE = [

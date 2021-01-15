@@ -17,6 +17,11 @@ class CategorySerializers(serializers.ModelSerializer):
         if category_name.isnumeric():
             raise serializers.ValidationError(
                 'Asegurese que este campo contenga unicamente caracteres alfabeticos')
+
+        if MovieCategory.objects.filter(category_name=category_name).exists():
+            raise serializers.ValidationError(
+                f'Ya existe una categoria con el nombre {category_name.upper()}')
+
         return value
 
     def validate_category_desc(self, value):

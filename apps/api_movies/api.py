@@ -38,7 +38,7 @@ class MoviesAPI(APIView):
         if serializer.is_valid():
             movies_instance = serializer.save()
             msg_success = {
-                'success': f'La Pelicula {movies_instance.name_movie} creada exitosamente'}
+                'success': f'La Pelicula {movies_instance.name_movie} fue creada exitosamente'}
             return Response(msg_success, status=status.HTTP_201_CREATED)
 
         error = msg_error('Error de validación', 'BAD_REQUEST', 400, serializer.errors)

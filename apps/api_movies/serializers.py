@@ -32,6 +32,10 @@ class MoviesSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 'Asegurese que este campo contenga unicamente caracteres alfabeticos')
 
+        if Movies.objects.filter(name_movie=name_movie).exists():
+            raise serializers.ValidationError(
+                f'Ya existe una pelicula con el nombre {name_movie.upper()}')
+
         return value.title()
 
     def validate_launch_year(self, value):

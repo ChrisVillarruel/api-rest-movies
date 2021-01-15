@@ -16,7 +16,7 @@ from apps.api_movie_category.models import MovieCategory
 
 class Movies(models.Model):
     movie_id = models.AutoField(primary_key=True)
-    name_movie = models.CharField(max_length=100)
+    name_movie = models.CharField(unique=True, max_length=100)
     launch_year = models.IntegerField()
     sinopsis = models.CharField(max_length=255)
     duration = models.CharField(max_length=20)

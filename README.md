@@ -53,9 +53,15 @@
 ### Actualización de una pelicula
 - http://example_name_domain.com/movies/api/3
 - Actualizamos una pelicula con el metodo PUT.
-- Me retorna un mensaje de exitoso, con el nombre de la pelicula que se creo.
+- Me retorna un mensaje de exitoso, con el nombre de la pelicula que se actualizo.
 
 ![This is a alt text.](/images_github/put_movie.png "This is a sample image.")
 
+### Actualizamos Parcial.
+- http://example_name_domain.com/movies/api/3
+- Actualizamos una pelicula de forma parcial utilizando el metodo PATCH.
+- Me retorna un mensaje de exitoso, con el nombre de la pelicula que se actualizo.
+
+![This is a alt text.](/images_github/patch_movie.png "This is a sample image.")
 
 

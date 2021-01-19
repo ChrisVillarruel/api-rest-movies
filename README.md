@@ -32,26 +32,16 @@
 
 # De las entidades creadas se demostrara el funcionamiento de la entitad Movies.
 ### Listado de una pelicula.
-- http://127.0.0.1:8000/movies/api/
+- http://example_name_domain.com/movies/api/
+- Me retorna todas las peliculas de la base de datos.  
 
 ![This is a alt text.](/images_github/list_movies.png "This is a sample image.")
 
+### Detallado de una pelicula
+- http://example_name_domain.com/movies/api/4
+- Igreso el numero de ID de la pelicula que quiero detallar y me mostrara el detalle de la pelicula al igual que los datos que se relacionan con ella.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![This is a alt text.](/images_github/detail_movie.png "This is a sample image.")
 
 
 

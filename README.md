@@ -45,8 +45,17 @@
 
 ### Creación de una pelicula
 - http://example_name_domain.com/movies/api/
-- Creación de una pelicula utilizando el metodo POST. 
+- Creación de una pelicula utilizando el metodo POST.
+- Me retorna un mensaje de exitoso, con el nombre de la pelicula que se creo.
 
 ![This is a alt text.](/images_github/post_movie.png "This is a sample image.")
+
+### Actualización de una pelicula
+- http://example_name_domain.com/movies/api/3
+- Actualizamos una pelicula con el metodo PUT.
+- Me retorna un mensaje de exitoso, con el nombre de la pelicula que se creo.
+
+![This is a alt text.](/images_github/put_movie.png "This is a sample image.")
+
 
 

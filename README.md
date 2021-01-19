@@ -57,7 +57,7 @@
 
 ![This is a alt text.](/images_github/put_movie.png "This is a sample image.")
 
-### Actualizamos Parcial.
+### Actualización Parcial de una pelicula.
 - http://example_name_domain.com/movies/api/3
 - Actualizamos una pelicula de forma parcial utilizando el metodo PATCH.
 - Me retorna un mensaje de exitoso, con el nombre de la pelicula que se actualizo.

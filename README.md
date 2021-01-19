@@ -1,4 +1,4 @@
-Actualmente la aplicación sigue en desarrollo
+# Actualmente la aplicación sigue en desarrollo
 
 ## ¿Actualmente que esta haciendo la aplicación?
 
@@ -10,9 +10,9 @@ Actualmente la aplicación sigue en desarrollo
 - Manejor local de URLS para cada controlador.
 - Validaciones de datos entre la capa del modelado y serializadores de django REST
 - Creación, Listado, Actualización, Actualización parcial y eliminación de regsitros para cada entidad.
-- Control de errores 400.
+- Manejo de errores 400.
 
-##¿Que le falta a la aplicación para ser terminada?
+## ¿Que le falta a la aplicación para ser terminada?
 
 - Control de errores del Servidor (+500).
 - Sesiones.
@@ -22,4 +22,15 @@ Actualmente la aplicación sigue en desarrollo
 - Verificación de cuentas.
 - Inicio de sesión de terceros (Google, Facebook, Twitter )
 - Permisos Mixin.
+- Entidad reseñas.
+
+
+# Diagrama Entidad Relación 
+
+
+
+
+
+
+
 

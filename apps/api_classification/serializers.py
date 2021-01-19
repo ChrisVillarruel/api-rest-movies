@@ -14,8 +14,8 @@ class ClassificationSerializer(serializers.ModelSerializer):
     # listado personalizado
     def to_representation(self, instance):
         return {
-            'id': instance['classification_id'],
-            'name': instance['classification_name']
+            'classification_id': instance['classification_id'],
+            'classification_name': instance['classification_name']
         }
 
     # validaciones classification_desc

@@ -35,7 +35,7 @@ class ClassificationAPI(APIView):
 
         if serializer.is_valid():
             classification_instance = serializer.save()
-            msg_success = {'success': f'La Clasificación {classification_instance.classification_name} creada'}
+            msg_success = {'success': 'Clasificación creada exitosamente'}
             return Response(msg_success, status=status.HTTP_201_CREATED)
 
         error = msg_error('Error de validación', 'BAD_REQUEST', 400, serializer.errors)
@@ -65,7 +65,7 @@ class ClassificationDetailAPI(APIView):
 
             if serializer.is_valid():
                 classification_instance = serializer.save()
-                msg_success = {'success': f'La Clasificación {classification_instance.classification_name} actualizada'}
+                msg_success = {'success': 'Clasificación actualizada exitosamente'}
                 return Response(msg_success, status=status.HTTP_200_OK)
 
             error = msg_error('Error de validación', 'BAD_REQUEST', 400, serializer.errors)
@@ -80,7 +80,7 @@ class ClassificationDetailAPI(APIView):
 
         if query_set is not None:
             query_set.delete()
-            msg_success = {'success': f'La Clasificación {query_set.classification_name} eliminada'}
+            msg_success = {'success': f'Clasificación eliminada exitosamente'}
             return Response(msg_success, status=status.HTTP_200_OK)
 
         error = msg_error('Clasificación no encontrada', 'NOT_FOUND', 404)

@@ -64,4 +64,11 @@
 
 ![This is a alt text.](/images_github/patch_movie.png "This is a sample image.")
 
+### Eliminar Pelicula.
+- http://example_name_domain.com/movies/api/1
+- Eliminamos una pelicula con el metodo DELETE.
+- Me retorna un mensaje de exitoso, con el nombre de la pelicula que se elimino.
+
+![This is a alt text.](/images_github/delete_movie.png "This is a sample image.")
+
 

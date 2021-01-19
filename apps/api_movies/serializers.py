@@ -4,6 +4,7 @@ from datetime import datetime
 from .models import Movies
 from apps.api_classification.models import Classification
 from apps.api_movie_category.models import MovieCategory
+# from apps.api_classification.serializers import ClassificationDetailSerializer
 
 
 class MoviesSerializer(serializers.ModelSerializer):
@@ -19,9 +20,11 @@ class MoviesSerializer(serializers.ModelSerializer):
     # custom list
     def to_representation(self, instance):
         return {
-            'id': instance['movie_id'],
-            'name': instance['name_movie'],
-            'launch_year': instance['launch_year'],
+            'movie_id': instance.movie_id,
+            'name_movie': instance.name_movie,
+            'launch_year': instance.launch_year,
+            'category': instance.category.category_name,
+            'classification': instance.classification.classification_name
         }
 
     # validate serializers fields
@@ -54,7 +57,7 @@ class MoviesSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 'Asegurese que haya ingresado el numero de minutos valido, no deberia de ser mayor a 3 digitos')
 
-        return f'{value} Minutos'
+        return f'{duration} Minutos'
 
     def create(self, validate_data):
         return Movies.objects.create(**validate_data)
@@ -70,8 +73,24 @@ class MoviesSerializer(serializers.ModelSerializer):
         return instance
 
 
+# Detalle de una pelicula
 class MoviesDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movies
-        fields = '__all__'
-        depth = 1
+        fields = ['movie_id', 'name_movie', 'launch_year', 'sinopsis', 'duration', 'category', 'classification']
+
+    # custom list
+    def to_representation(self, instance):
+        return {
+            'movie_id': instance.movie_id,
+            'name_movie': instance.name_movie,
+            'launch_year': instance.launch_year,
+            'category': {
+                'category_id': instance.category.category_id,
+                'category_name': instance.category.category_name
+            },
+            'classification': {
+                'classification_id': instance.classification.classification_id,
+                'classification_name': instance.classification.classification_name
+            }
+        }

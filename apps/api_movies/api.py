@@ -28,7 +28,7 @@ def msg_error(message, status, code, detail=None):
 class MoviesAPI(APIView):
 
     def get(self, request):
-        query_set = Movies.objects.all().values('movie_id', 'name_movie', 'launch_year')
+        query_set = Movies.objects.all()
         serializers = MoviesSerializer(instance=query_set, many=True)
         return Response(serializers.data, status=status.HTTP_200_OK)
 

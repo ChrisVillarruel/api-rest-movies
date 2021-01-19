@@ -13,7 +13,7 @@ ALLOWED_HOSTS = []
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'moviesdb',
+        'NAME': 'api_moviesdb',
         'USER': 'chris',
         'PASSWORD': 'givc980909',
         'HOST': 'localhost',

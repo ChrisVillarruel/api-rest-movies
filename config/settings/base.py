@@ -46,6 +46,7 @@ LOCAL_APPS = [
     'apps.api_movie_category',
     'apps.api_classification',
     'apps.api_movies',
+    'apps.api_auth'
 ]
 
 # third apps
@@ -124,3 +125,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+AUTH_USER_MODEL = 'api_auth.User'
+
+

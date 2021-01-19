@@ -1,6 +1,6 @@
-#ctualmente la aplicación sigue en desarrollo
+Actualmente la aplicación sigue en desarrollo
 
-##¿Actualmente que esta haciendo la aplicación?
+## ¿Actualmente que esta haciendo la aplicación?
 
 - Creación de la entidad clasficiación.
 - Creacion de la entidad categoria para una pelicula.

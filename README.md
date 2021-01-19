@@ -71,4 +71,11 @@
 
 ![This is a alt text.](/images_github/delete_movie.png "This is a sample image.")
 
+### Error 404 No encontrado..
+- http://example_name_domain.com/movies/api/120
+- Este tipo de error solo funciona para la busqueda de recursos que no existan en la base de datos.
+- Los errores como nombres de modulos incorrectos aun se sigue desarronllando un metodo que permita retornar al usuario el mismo error.
+- Me retorna un mensaje de error 400.
+
+![This is a alt text.](/images_github/error_not_found.png "This is a sample image.")
 

@@ -1,6 +1,6 @@
-###Actualmente la aplicación sigue en desarrollo
+#ctualmente la aplicación sigue en desarrollo
 
-#####¿Actualmente que esta haciendo la aplicación?
+##¿Actualmente que esta haciendo la aplicación?
 
 - Creación de la entidad clasficiación.
 - Creacion de la entidad categoria para una pelicula.
@@ -12,7 +12,7 @@
 - Creación, Listado, Actualización, Actualización parcial y eliminación de regsitros para cada entidad.
 - Control de errores 400.
 
-#####¿Que le falta a la aplicación para ser terminada?
+##¿Que le falta a la aplicación para ser terminada?
 
 - Control de errores del Servidor (+500).
 - Sesiones.

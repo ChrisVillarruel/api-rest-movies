@@ -14,4 +14,4 @@ class MovieCategory(models.Model):
         ordering = ['category_id']
 
     def __str__(self):
-        return f'{self.category_id}: {self.category_name.title()}, {self.category_desc}'
+        return f'{self.category_name}'

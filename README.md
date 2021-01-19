@@ -31,7 +31,18 @@
 
 
 # De las entidades creadas se demostrara el funcionamiento de la entitad Movies.
-### Lsitado de una pelicula.
+### Listado de una pelicula.
+- http://127.0.0.1:8000/movies/api/
+
+![This is a alt text.](/images_github/list_movies.png "This is a sample image.")
+
+
+
+
+
+
+
+
 
 
 

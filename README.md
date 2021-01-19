@@ -27,6 +27,7 @@
 
 # Diagrama Entidad Relación 
 
+![This is a alt text.](/ChrisVillarruel/api_rest_movies/images_github/mer.png "This is a sample image.")
 
 
 

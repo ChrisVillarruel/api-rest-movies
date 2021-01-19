@@ -111,7 +111,7 @@ class MoviesDetailAPI(APIView):
         if query_set is not None:
             query_set.delete()
             msg_success = {
-                'success': f'La Pelicula {movies_instance.name_movie} fue eliminada exitosamente'}
+                'success': f'La Pelicula {query_set.name_movie} fue eliminada exitosamente'}
             return Response(msg_success, status=status.HTTP_200_OK)
 
         error = msg_error('Pelicula no encontrada', 'NOT_FOUND', 404)

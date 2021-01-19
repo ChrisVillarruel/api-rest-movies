@@ -27,6 +27,16 @@
 
 # Diagrama Entidad Relación 
 
+![This is a alt text.](/images_github/mer.png "This is a sample image.")
+
+
+# De las entidades creadas se demostrara el funcionamiento de la entitad Movies.
+### Lsitado de una pelicula.
+
+
+
+
+
 
 
 

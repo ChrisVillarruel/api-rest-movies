@@ -21,5 +21,5 @@ urlpatterns = [
     path('classifications/', include('apps.api_classification.urls')),
     path('categories/', include('apps.api_movie_category.urls')),
     path('movies/', include('apps.api_movies.urls')),
-    # path('auth/', include('apps.authentication.urls')),
+    path('auth/', include('apps.api_auth.urls')),
 ]

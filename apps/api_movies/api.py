@@ -5,7 +5,7 @@ from rest_framework.pagination import PageNumberPagination
 
 
 from .models import Movies
-from apps.msg_error import msg_error
+from apps.metodosExternos import msg_error
 from .serializers import MoviesSerializer, MoviesDetailSerializer
 
 # mostrar error de validación

@@ -59,27 +59,17 @@ class MoviesSerializer(serializers.ModelSerializer):
                 'Asegurese que haya ingresado el numero de minutos valido, no deberia de ser mayor a 3 digitos')
         return f'{duration} Minutos'
 
-    def create(self, validate_data):
-        return Movies.objects.create(**validate_data)
 
-    def update(self, instance, validate_data):
-        instance.name_movie = validate_data.get('name_movie', instance.name_movie)
-        instance.launch_year = validate_data.get('launch_year', instance.launch_year)
-        instance.sinopsis = validate_data.get('sinopsis', instance.sinopsis)
-        instance.duration = validate_data.get('duration', instance.duration)
-        instance.category = validate_data.get('category', instance.category)
-        instance.classification = validate_data.get('classification', instance.classification)
-        instance.save()
-        return instance
+""" Detallado de Peliculas """
 
 
-# Detalle de una pelicula
 class MoviesDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movies
         fields = ['movie_id', 'name_movie', 'launch_year', 'sinopsis', 'duration', 'category', 'classification']
 
-    # custom list
+    """ Respresentación de pelicula con relaciones personalizada """
+
     def to_representation(self, instance):
         return {
             'movie_id': instance.movie_id,

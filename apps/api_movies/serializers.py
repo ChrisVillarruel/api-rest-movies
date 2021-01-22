@@ -23,6 +23,7 @@ class MoviesSerializer(serializers.ModelSerializer):
             'movie_id': instance.movie_id,
             'name_movie': instance.name_movie,
             'launch_year': instance.launch_year,
+            'duration': instance.duration,
             'category': instance.category.category_name,
             'classification': instance.classification.classification_name
         }
@@ -56,7 +57,6 @@ class MoviesSerializer(serializers.ModelSerializer):
         if len(duration) > 3:
             raise serializers.ValidationError(
                 'Asegurese que haya ingresado el numero de minutos valido, no deberia de ser mayor a 3 digitos')
-
         return f'{duration} Minutos'
 
     def create(self, validate_data):
@@ -85,6 +85,7 @@ class MoviesDetailSerializer(serializers.ModelSerializer):
             'movie_id': instance.movie_id,
             'name_movie': instance.name_movie,
             'launch_year': instance.launch_year,
+            'duration': instance.duration,
             'category': {
                 'category_id': instance.category.category_id,
                 'category_name': instance.category.category_name
@@ -92,5 +93,6 @@ class MoviesDetailSerializer(serializers.ModelSerializer):
             'classification': {
                 'classification_id': instance.classification.classification_id,
                 'classification_name': instance.classification.classification_name
-            }
+            },
+            'sinopsis': instance.sinopsis
         }

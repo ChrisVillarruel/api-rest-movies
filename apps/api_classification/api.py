@@ -5,9 +5,8 @@ from rest_framework import status
 from datetime import datetime
 
 from .models import Classification
-from apps.msg_error import msg_error
+from apps.metodosExternos import msg_error
 from .serializers import ClassificationSerializer, ClassificationDetailSerializer
-
 
 class ClassificationAPI(APIView):
 

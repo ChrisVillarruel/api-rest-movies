@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework.response import Response
 
 from .models import MovieCategory
-from apps.msg_error import msg_error
+from apps.metodosExternos import msg_error
 from .serializers import CategorySerializers
 
 

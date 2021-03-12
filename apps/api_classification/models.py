@@ -5,7 +5,7 @@ from apps.base.models import BaseModel
 
 
 class Classification(BaseModel):
-    # Modelo que hereda de Base model. Cada pelicula debe de tener clasificación
+    # Modelo que hereda de Base model. Cada pelicula debe de tener una clasificación
 
     classification_id = models.AutoField(primary_key=True)
     classification_name = models.CharField(max_length=3)

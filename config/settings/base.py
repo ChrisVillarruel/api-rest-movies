@@ -12,6 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'i9@wh167(d2+vyc2f696lafrk8f4gvavb)#2(00of=64_^s_x&'
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -33,8 +34,7 @@ BASE_APPS = [
 LOCAL_APPS = [
     'apps.api_movie_category',
     'apps.api_classification',
-    'apps.api_movies',
-    'apps.api_auth',
+    'apps.api_movies'
 ]
 
 # third apps
@@ -43,11 +43,6 @@ THIRD_APPS = [
 ]
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
-
-REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 5,
-}
 
 
 MIDDLEWARE = [
@@ -118,5 +113,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-AUTH_USER_MODEL = 'api_auth.User'

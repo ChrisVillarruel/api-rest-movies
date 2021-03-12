@@ -1,17 +1,21 @@
-from django.shortcuts import render
-from rest_framework.views import APIView
+# Modulos nativos rest_framework
+from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
+from rest_framework.views import APIView
 from rest_framework import status
+
+# Modulo de python
 from datetime import datetime
 
-from .models import Classification
-from apps.metodosExternos import msg_error
+# Modulos Locales
 from .serializers import ClassificationSerializer, ClassificationDetailSerializer
+from apps.metodosExternos import msg_error
+from .models import Classification
 
 class ClassificationAPI(APIView):
 
     def get(self, request):
-        query_set = Classification.objects.all().values('classification_id', 'classification_name')
+        query_set = Classification.objects.all().values('classification_id', 'classification_name', 'classification_desc')
         serializers = ClassificationSerializer(instance=query_set, many=True)
         return Response(serializers.data, status=status.HTTP_200_OK)
 
@@ -19,7 +23,7 @@ class ClassificationAPI(APIView):
         serializer = ClassificationSerializer(data=request.data)
 
         if serializer.is_valid():
-            classification_instance = serializer.save()
+            serializer.save()
             msg_success = {'success': 'Clasificación creada exitosamente'}
             return Response(msg_success, status=status.HTTP_201_CREATED)
 

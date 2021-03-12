@@ -4,18 +4,18 @@ from .models import Classification
 
 class ClassificationSerializer(serializers.ModelSerializer):
     classification_name = serializers.CharField(max_length=3, min_length=1)
-    classification_desc = serializers.CharField(max_length=100, allow_blank=True)
+    classification_desc = serializers.CharField(max_length=100)
 
     class Meta:
         model = Classification
-        fiedls = ['classification_id', 'classification_name', 'classification_desc']
-        exclude = ['classification_id']
+        fiedls = ['classification_name', 'classification_desc']
 
     # listado personalizado
     def to_representation(self, instance):
         return {
             'classification_id': instance['classification_id'],
-            'classification_name': instance['classification_name']
+            'classification_name': instance['classification_name'],
+            'classification_desc': instance['classification_desc']
         }
 
     # validaciones classification_desc

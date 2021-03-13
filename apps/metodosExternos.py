@@ -15,3 +15,11 @@ def msg_error(message, status, code, detail=None):
         }
     }
     return msg_error
+
+
+def msg_success(message, code):
+    msg_success = {
+        'message': message,
+        'code': code
+    }
+    return msg_success

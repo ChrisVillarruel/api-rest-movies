@@ -1,10 +1,13 @@
-# from rest_framework.views import APIView
-# from rest_framework import status
-# from rest_framework.response import Response
 
-# from .models import MovieCategory
-# from apps.metodosExternos import msg_error
+# Modulos nativos de rest_framework
+from rest_framework.viewsets import ModelViewSet
+from rest_framework.response import Response
+from rest_framework import status
+
 # from .serializers import CategorySerializers
+from apps.metodosExternos import msg_error, msg_success
+from .serializers import MovieCategorySerializers
+from .models import MovieCategory
 
 
 # class CategoryMoviesAPI(APIView):
@@ -84,3 +87,13 @@
 #         # categoria no encontrada
 #         error = msg_error('Categoria no encontrada', 'NOT_FOUND', 404)
 #         return Response(error, status=status.HTTP_404_NOT_FOUND)
+
+
+class MovieCategoryViewSet(ModelViewSet):
+    serializer_class = MovieCategorySerializers
+
+    def get_queryset(self, pk=None):
+        if pk is None:
+            return self.get_serializer().Meta.model.objects.filter(state=True)
+
+        return self.get_serializer().Meta.model.objects.filter(category_id=pk, state=True).first()

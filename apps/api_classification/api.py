@@ -79,11 +79,11 @@ class ClassificationDetailAPI(APIView):
 class ClassificationViewSet(ModelViewSet):
     serializer_class = ClassificationSerializer
 
-    def get_quesyset(self, pk=None):
+    def get_queryset(self, pk=None):
         # Si pk es None, retornamos un listado. De lo contrario retornamos un objeto
 
         if pk is None:
-            return self.get_serializer().Meta.model.objects.all(state=True).values(
+            return self.get_serializer().Meta.model.objects.filter().values(
                 'classification_id', 'classification_name', 'classification_desc')
 
         return self.get_serializer().Meta.model.filter(classification_id=pk, state=True).first()
@@ -101,7 +101,7 @@ class ClassificationViewSet(ModelViewSet):
     def update(self, request, pk=None):
         # Actualización parcial de una Clasificación
 
-        classification = self.get_quesyset(pk)
+        classification = self.get_queryset(pk)
         if classification is not None:
 
             serializer = self.serializer_class(instance=classification, data=request.data, partial=True)
@@ -114,7 +114,7 @@ class ClassificationViewSet(ModelViewSet):
     def destroy(self, request, pk=None):
         # Eliminación logica de una Clasificación
 
-        classification = self.get_quesyset(pk)
+        classification = self.get_queryset(pk)
         if classification is not None:
             classification.state = False
             classification.save()

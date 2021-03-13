@@ -40,7 +40,14 @@ class ClassificationSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 'Asegurese que este campo contenga unicamente caracteres')
 
+        if classification_desc is None:
+            classification_desc = 'Sin descripción'
+            return classification_desc
+
+        return value.capitalize()
+
     # campos validados
+
     def validate(self, data):
         return data
 

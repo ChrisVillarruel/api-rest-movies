@@ -12,7 +12,6 @@ class Classification(BaseModel):
     classification_desc = models.CharField(unique=True, max_length=250, blank=True, null=True)
 
     class Meta:
-        managed = False
         db_table = 'tbl_classification'
         verbose_name = 'Clasificación'
         verbose_name_plural = 'Clasificaciones'

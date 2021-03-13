@@ -4,67 +4,46 @@ from .models import Classification
 
 class ClassificationSerializer(serializers.ModelSerializer):
     classification_name = serializers.CharField(max_length=3, min_length=1)
-    classification_desc = serializers.CharField(max_length=100)
+    classification_desc = serializers.CharField(max_length=250)
 
     class Meta:
         model = Classification
         exclude = ('state', 'created_at', 'updated_at', 'deleted_at')
 
-
-    # listado personalizado
     def to_representation(self, instance):
+        # retorna un listado personalizado
+
         return {
             'classification_id': instance['classification_id'],
             'classification_name': instance['classification_name'],
             'classification_desc': instance['classification_desc']
         }
 
-    # validaciones classification_desc
     def validate_classification_name(self, value):
-        classification_name = value
+        # retornara el nombre de la clasificación simepre y cuando las condiciones sean falsas
 
-        if classification_name.isnumeric():
-            raise serializers.ValidationError(
-                'Asegurese que este campo contenga unicamente caracteres alfanumericos')
+        if value.isnumeric():
+            msg = 'Asegurese que este campo contenga unicamente caracteres alfanumericos'
+            raise serializers.ValidationError(msg)
 
-        if not classification_name.isalpha():
-            raise serializers.ValidationError(
-                'Asegurese que este campo no contenga caracteres especiales')
+        if not value.isalpha():
+            msg = 'Asegurese que este campo no contenga caracteres especiales'
+            raise serializers.ValidationError(msg)
 
-        return value
+        if Classification.objects.filter(classification_name=value):
+            msg = f'Ya existe una clasificacion con este nombre {value.upper()}.'
+            raise serializers.ValidationError(msg)
 
-    # validaciones classification_desc
+        return value.upper()
+
     def validate_classification_desc(self, value):
-        classification_desc = value
+        # retornara la descripción de la clasificación, si todas la condiciones sean flasas
 
-        if classification_desc.isnumeric():
-            raise serializers.ValidationError(
-                'Asegurese que este campo contenga unicamente caracteres')
-
-        if classification_desc is None:
-            classification_desc = 'Sin descripción'
-            return classification_desc
+        if value.isnumeric():
+            msg = 'Asegurese que este campo contenga unicamente caracteres'
+            raise serializers.ValidationError(msg)
 
         return value.capitalize()
 
-    # campos validados
-
-    def validate(self, data):
-        return data
-
-    # create
     def create(self, validate_data):
         return Classification.objects.create(**validate_data)
-
-    # update
-    def update(self, instance, validate_data):
-        instance.classification_name = validate_data.get('classification_id', instance.classification_name)
-        instance.classification_desc = validate_data.get('classification_desc', instance.classification_desc)
-        instance.save()
-        return instance
-
-
-class ClassificationDetailSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Classification
-        fields = ['classification_id', 'classification_name', 'classification_desc']

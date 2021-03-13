@@ -8,7 +8,8 @@ class ClassificationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Classification
-        fiedls = ['classification_name', 'classification_desc']
+        exclude = ('state', 'created_at', 'updated_at', 'deleted_at')
+
 
     # listado personalizado
     def to_representation(self, instance):

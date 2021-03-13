@@ -8,8 +8,8 @@ class Classification(BaseModel):
     # Modelo que hereda de Base model. Cada pelicula debe de tener una clasificación
 
     classification_id = models.AutoField(primary_key=True)
-    classification_name = models.CharField(max_length=3)
-    classification_desc = models.CharField(unique=True, max_length=250, blank=True, null=True)
+    classification_name = models.CharField(max_length=3, unique=True)
+    classification_desc = models.CharField(unique=True, max_length=250, null=False)
 
     class Meta:
         db_table = 'tbl_classification'

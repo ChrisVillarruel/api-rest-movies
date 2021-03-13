@@ -32,9 +32,8 @@ BASE_APPS = [
 
 # app local
 LOCAL_APPS = [
-    'apps.api_movie_category',
+    'apps.base',
     'apps.api_classification',
-    'apps.api_movies'
 ]
 
 # third apps

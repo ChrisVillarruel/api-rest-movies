@@ -1,104 +1,104 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework.pagination import PageNumberPagination
+# from rest_framework.views import APIView
+# from rest_framework.response import Response
+# from rest_framework import status
+# from rest_framework.pagination import PageNumberPagination
 
 
-from .models import Movies
-from apps.metodosExternos import msg_error
-from .serializers import MoviesSerializer, MoviesDetailSerializer
+# from .models import Movies
+# from apps.metodosExternos import msg_error
+# from .serializers import MoviesSerializer, MoviesDetailSerializer
 
-# mostrar error de validación
-
-
-class MoviesAPI(APIView):
-
-    def get(self, request):
-        query_set = Movies.objects.all()
-        serializers = MoviesSerializer(instance=query_set, many=True)
-        return Response(serializers.data, status=status.HTTP_200_OK)
-
-    def post(self, request):
-        serializer = MoviesSerializer(data=request.data)
-
-        if serializer.is_valid():
-            movies_instance = serializer.save()
-            msg_success = {
-                'success': f'La Pelicula {movies_instance.name_movie} fue creada exitosamente'}
-            return Response(msg_success, status=status.HTTP_201_CREATED)
-
-        error = msg_error('Error de validación', 'BAD_REQUEST', 400, serializer.errors)
-        return Response(error, status=status.HTTP_400_BAD_REQUEST)
+# # mostrar error de validación
 
 
-class MoviesDetailAPI(APIView):
+# class MoviesAPI(APIView):
 
-    def get_query(self, pk=None):
-        query_set = Movies.objects.filter(pk=pk).first()
-        return query_set
+#     def get(self, request):
+#         query_set = Movies.objects.all()
+#         serializers = MoviesSerializer(instance=query_set, many=True)
+#         return Response(serializers.data, status=status.HTTP_200_OK)
 
-    # detail movie
-    def get(self, request, pk=None):
-        query_set = self.get_query(pk)
+#     def post(self, request):
+#         serializer = MoviesSerializer(data=request.data)
 
-        if query_set is not None:
-            serializer = MoviesDetailSerializer(instance=query_set)
-            return Response(serializer.data, status=status.HTTP_200_OK)
+#         if serializer.is_valid():
+#             movies_instance = serializer.save()
+#             msg_success = {
+#                 'success': f'La Pelicula {movies_instance.name_movie} fue creada exitosamente'}
+#             return Response(msg_success, status=status.HTTP_201_CREATED)
 
-        error = msg_error('Pelicula no encontrada', 'NOT_FOUND', 404)
-        return Response(error, status=status.HTTP_404_NOT_FOUND)
+#         error = msg_error('Error de validación', 'BAD_REQUEST', 400, serializer.errors)
+#         return Response(error, status=status.HTTP_400_BAD_REQUEST)
 
-    # update
-    def put(self, request, pk=None):
-        query_set = self.get_query(pk)
 
-        if query_set is not None:
-            serializer = MoviesSerializer(instance=query_set, data=request.data)
+# class MoviesDetailAPI(APIView):
 
-            # validaciones
-            if serializer.is_valid():
-                movies_instance = serializer.save()
-                msg_success = {
-                    'success': f'La Pelicula {movies_instance.name_movie} fue actualizada exitosamente'}
-                return Response(msg_success, status=status.HTTP_200_OK)
+#     def get_query(self, pk=None):
+#         query_set = Movies.objects.filter(pk=pk).first()
+#         return query_set
 
-            # error de validaciones
-            error = msg_error('Error de validación', 'BAD_REQUEST', 400, serializer.errors)
-            return Response(error, status=status.HTTP_400_BAD_REQUEST)
+#     # detail movie
+#     def get(self, request, pk=None):
+#         query_set = self.get_query(pk)
 
-        error = msg_error('Pelicula no encontrada', 'NOT_FOUND', 404)
-        return Response(error, status=status.HTTP_404_NOT_FOUND)
+#         if query_set is not None:
+#             serializer = MoviesDetailSerializer(instance=query_set)
+#             return Response(serializer.data, status=status.HTTP_200_OK)
 
-    # partial update
-    def patch(self, request, pk=None):
-        query_set = self.get_query(pk)
+#         error = msg_error('Pelicula no encontrada', 'NOT_FOUND', 404)
+#         return Response(error, status=status.HTTP_404_NOT_FOUND)
 
-        if query_set is not None:
-            serializer = MoviesSerializer(instance=query_set, data=request.data, partial=True)
+#     # update
+#     def put(self, request, pk=None):
+#         query_set = self.get_query(pk)
 
-            # validaciones
-            if serializer.is_valid():
-                movies_instance = serializer.save()
-                msg_success = {
-                    'success': f' La Pelicula {movies_instance.name_movie} fue actualizada exitosamente'}
-                return Response(msg_success, status=status.HTTP_200_OK)
+#         if query_set is not None:
+#             serializer = MoviesSerializer(instance=query_set, data=request.data)
 
-            # error de validaciones
-            error = msg_error('Error de validación', 'BAD_REQUEST', 400, serializer.errors)
-            return Response(error, status=status.HTTP_400_BAD_REQUEST)
+#             # validaciones
+#             if serializer.is_valid():
+#                 movies_instance = serializer.save()
+#                 msg_success = {
+#                     'success': f'La Pelicula {movies_instance.name_movie} fue actualizada exitosamente'}
+#                 return Response(msg_success, status=status.HTTP_200_OK)
 
-        error = msg_error('Pelicula no encontrada', 'NOT_FOUND', 404)
-        return Response(error, status=status.HTTP_404_NOT_FOUND)
+#             # error de validaciones
+#             error = msg_error('Error de validación', 'BAD_REQUEST', 400, serializer.errors)
+#             return Response(error, status=status.HTTP_400_BAD_REQUEST)
 
-    # delete
-    def delete(self, request, pk=None):
-        query_set = self.get_query(pk)
+#         error = msg_error('Pelicula no encontrada', 'NOT_FOUND', 404)
+#         return Response(error, status=status.HTTP_404_NOT_FOUND)
 
-        if query_set is not None:
-            query_set.delete()
-            msg_success = {
-                'success': f'La Pelicula {query_set.name_movie} fue eliminada exitosamente'}
-            return Response(msg_success, status=status.HTTP_200_OK)
+#     # partial update
+#     def patch(self, request, pk=None):
+#         query_set = self.get_query(pk)
 
-        error = msg_error('Pelicula no encontrada', 'NOT_FOUND', 404)
-        return Response(error, status=status.HTTP_404_NOT_FOUND)
+#         if query_set is not None:
+#             serializer = MoviesSerializer(instance=query_set, data=request.data, partial=True)
+
+#             # validaciones
+#             if serializer.is_valid():
+#                 movies_instance = serializer.save()
+#                 msg_success = {
+#                     'success': f' La Pelicula {movies_instance.name_movie} fue actualizada exitosamente'}
+#                 return Response(msg_success, status=status.HTTP_200_OK)
+
+#             # error de validaciones
+#             error = msg_error('Error de validación', 'BAD_REQUEST', 400, serializer.errors)
+#             return Response(error, status=status.HTTP_400_BAD_REQUEST)
+
+#         error = msg_error('Pelicula no encontrada', 'NOT_FOUND', 404)
+#         return Response(error, status=status.HTTP_404_NOT_FOUND)
+
+#     # delete
+#     def delete(self, request, pk=None):
+#         query_set = self.get_query(pk)
+
+#         if query_set is not None:
+#             query_set.delete()
+#             msg_success = {
+#                 'success': f'La Pelicula {query_set.name_movie} fue eliminada exitosamente'}
+#             return Response(msg_success, status=status.HTTP_200_OK)
+
+#         error = msg_error('Pelicula no encontrada', 'NOT_FOUND', 404)
+#         return Response(error, status=status.HTTP_404_NOT_FOUND)

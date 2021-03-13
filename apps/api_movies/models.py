@@ -10,25 +10,26 @@
 from django.db import models
 
 # Local Modules
-from apps.api_classification.models import Classification
-from apps.api_movie_category.models import MovieCategory
+# from apps.api_classification.models import Classification
+# from apps.api_movie_category.models import MovieCategory
 
 
-class Movies(models.Model):
-    movie_id = models.AutoField(primary_key=True)
-    name_movie = models.CharField(unique=True, max_length=100)
-    launch_year = models.IntegerField()
-    sinopsis = models.CharField(max_length=255)
-    duration = models.CharField(max_length=20)
-    category = models.ForeignKey(MovieCategory, on_delete=models.CASCADE, related_name='category')
-    classification = models.ForeignKey(Classification, on_delete=models.CASCADE, related_name='classification')
+# class Movies(models.Model):
+#     pass
+# movie_id = models.AutoField(primary_key=True)
+# name_movie = models.CharField(unique=True, max_length=100)
+# launch_year = models.IntegerField()
+# sinopsis = models.CharField(max_length=255)
+# duration = models.CharField(max_length=20)
+# category = models.ForeignKey(MovieCategory, on_delete=models.CASCADE, related_name='category')
+# classification = models.ForeignKey(Classification, on_delete=models.CASCADE, related_name='classification')
 
-    class Meta:
-        managed = False
-        db_table = 'tbl_movies'
-        verbose_name = 'Pelicula'
-        verbose_name_plural = 'Peliculas'
-        ordering = ['movie_id']
+# class Meta:
+#     # managed = False
+#     db_table = 'tbl_movies'
+#     verbose_name = 'Pelicula'
+#     verbose_name_plural = 'Peliculas'
+#     ordering = ['movie_id']
 
-    def __str__(self):
-        return f'{self.name_movie.title()}, {self.launch_year}, {self.duration}'
+# def __str__(self):
+#     return f'{self.name_movie.title()}, {self.launch_year}, {self.duration}'

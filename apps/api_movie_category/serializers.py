@@ -9,19 +9,18 @@ class MovieCategorySerializers(serializers.ModelSerializer):
 
     class Meta:
         model = MovieCategory
-        fields = ['category_id', 'category_name', 'category_desc']
         exclude = ('state', 'created_at', 'updated_at', 'deleted_at')
 
     def validate_category_name(self, value):
         category_name = value
 
         if category_name.isnumeric():
-            raise serializers.ValidationError(
-                'Asegurese que este campo contenga unicamente caracteres alfabeticos')
+            msg = 'Asegurese que este campo contenga unicamente caracteres alfabeticos'
+            raise serializers.ValidationError(msg)
 
         if MovieCategory.objects.filter(category_name=category_name).exists():
-            raise serializers.ValidationError(
-                f'Ya existe una categoria con el nombre {category_name.upper()}')
+            msg = 'Ya existe una categoria con este nombre'
+            raise serializers.ValidationError(msg)
 
         return value
 
@@ -33,14 +32,5 @@ class MovieCategorySerializers(serializers.ModelSerializer):
                 'Asegurese que este campo contenga unicamente caracteres alfabeticos')
         return value
 
-    def validate(self, data):
-        return data
-
     def create(self, validate_data):
         return MovieCategory.objects.create(**validate_data)
-
-    def update(self, instance, validate_data):
-        instance.category_name = validate_data.get('category_name', instance.category_name)
-        instance.category_desc = validate_data.get('category_desc', instance.category_desc)
-        instance.save()
-        return instance

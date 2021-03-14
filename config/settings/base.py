@@ -44,6 +44,12 @@ THIRD_APPS = [
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
 
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'exception_handler.custom_exception_handler',
+    'NON_FIELD_ERRORS_KEY': 'error',
+}
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

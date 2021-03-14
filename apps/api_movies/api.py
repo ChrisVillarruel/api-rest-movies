@@ -1,14 +1,13 @@
-# from rest_framework.views import APIView
-# from rest_framework.response import Response
-# from rest_framework import status
-# from rest_framework.pagination import PageNumberPagination
 
+# Modulos nativos de rest_framework
+from rest_framework.response import Response
+from rest_framework.viewsets import ModelViewSet
+from rest_framework import status
 
-# from .models import Movies
-# from apps.metodosExternos import msg_error
-# from .serializers import MoviesSerializer, MoviesDetailSerializer
-
-# # mostrar error de validación
+# Modulos locales
+from apps.metodosExternos import msg_error, resource_created, resource_updated, resource_destroy, not_found
+from .serializers import MoviesSerializer, MoviesDetailSerializer
+from .models import Movies
 
 
 # class MoviesAPI(APIView):
@@ -102,3 +101,23 @@
 
 #         error = msg_error('Pelicula no encontrada', 'NOT_FOUND', 404)
 #         return Response(error, status=status.HTTP_404_NOT_FOUND)
+
+
+class MoviesViewSet(ModelViewSet):
+    serializer_class = MoviesSerializer
+
+    def get_queryset(self, pk=None):
+        # Si pk es None, retornamos un listado. De lo contrario retornamos un objeto
+
+        if pk is None:
+            return self.get_serializer().Meta.model.objects.filter(state=True)
+
+        return self.get_serializer().Meta.objects.filter(movie_id=pk, state=True).first()
+
+    def create(self, request):
+
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response(resource_created(), status=status.HTTP_201_CREATED)

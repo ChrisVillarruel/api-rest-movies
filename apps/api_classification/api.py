@@ -9,7 +9,7 @@ from datetime import datetime
 
 # Modulos Locales
 from .serializers import ClassificationSerializer
-from apps.metodosExternos import msg_error, msg_success
+from apps.metodosExternos import msg_error, resource_created, resource_updated, resource_destroy, not_found
 from .models import Classification
 
 
@@ -32,8 +32,7 @@ class ClassificationViewSet(ModelViewSet):
         serializer.is_valid(raise_exception=True)
         serializer.save()
 
-        success = msg_success('Clasificación creada', 201)
-        return Response(success, status=status.HTTP_201_CREATED)
+        return Response(resource_created(), status=status.HTTP_201_CREATED)
 
     def update(self, request, pk=None):
         # Actualización parcial de una Clasificación
@@ -45,16 +44,17 @@ class ClassificationViewSet(ModelViewSet):
             serializer.is_valid(raise_exception=True)
             serializer.save()
 
-            success = msg_success('Clasificación actualizada', 200)
-            return Response(success, status=status.HTTP_200_OK)
+            return Response(resource_updated(), status=status.HTTP_200_OK)
+        return Response(not_found(), status=status.HTTP_404_NOT_FOUND)
 
     def destroy(self, request, pk=None):
         # Eliminación logica de una Clasificación
 
         classification = self.get_queryset(pk)
         if classification is not None:
+
             classification.state = False
             classification.save()
 
-            success = msg_success('Clasificación eliminada', 200)
-            return Response(success, status=status.HTTP_200_OK)
+            return Response(resource_destroy(), status=status.HTTP_200_OK)
+        return Response(not_found(), status=status.HTTP_404_NOT_FOUND)

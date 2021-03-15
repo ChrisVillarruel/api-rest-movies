@@ -1,88 +1,63 @@
-# from rest_framework import serializers
-# from datetime import datetime
+# Modulos nativos de rest_framework
+from rest_framework import serializers
+from datetime import datetime
 
-# from .models import Movies
-# from apps.api_classification.models import Classification
-# from apps.api_movie_category.models import MovieCategory
-# # from apps.api_classification.serializers import ClassificationDetailSerializer
-
-
-# class MoviesSerializer(serializers.ModelSerializer):
-#     name_movie = serializers.CharField(max_length=100, min_length=5)
-#     launch_year = serializers.IntegerField()
-#     sinopsis = serializers.CharField(max_length=255)
-#     duration = serializers.CharField(max_length=20)
-
-#     class Meta:
-#         model = Movies
-#         fields = ['movie_id', 'name_movie', 'launch_year', 'sinopsis', 'duration', 'category', 'classification']
-
-#     # custom list
-#     def to_representation(self, instance):
-#         return {
-#             'movie_id': instance.movie_id,
-#             'name_movie': instance.name_movie,
-#             'launch_year': instance.launch_year,
-#             'duration': instance.duration,
-#             'category': instance.category.category_name,
-#             'classification': instance.classification.classification_name
-#         }
-
-#     # validate serializers fields
-#     def validate_name_movie(self, value):
-#         name_movie = value
-
-#         if name_movie.isnumeric():
-#             raise serializers.ValidationError(
-#                 'Asegurese que este campo contenga unicamente caracteres alfabeticos')
-
-#         if Movies.objects.filter(name_movie=name_movie).exists():
-#             raise serializers.ValidationError(
-#                 f'Ya existe una pelicula con el nombre {name_movie.upper()}')
-
-#         return value.title()
-
-#     def validate_launch_year(self, value):
-#         launch_year = value
-#         actual_year = int(datetime.now().strftime("%Y"))
-
-#         if launch_year > actual_year or launch_year < 1922:
-#             raise serializers.ValidationError(
-#                 f'El año que usted ingreso no es valido. Asegurese que el año se encuentre entre {actual_year} y el año 1922')
-#         return value
-
-#     def validate_duration(self, value):
-#         duration = value
-
-#         if len(duration) > 3:
-#             raise serializers.ValidationError(
-#                 'Asegurese que haya ingresado el numero de minutos valido, no deberia de ser mayor a 3 digitos')
-#         return f'{duration} Minutos'
+# Modulos locales
+from .models import Movies
+from apps.api_classification.models import Classification
+from apps.api_movie_category.models import MovieCategory
 
 
-# """ Detallado de Peliculas """
+class MoviesSerializer(serializers.ModelSerializer):
+    # Serializador para la creación de una pelicula
 
+    name_movie = serializers.CharField(max_length=100, min_length=5)
+    launch_year = serializers.IntegerField()
+    sinopsis = serializers.CharField(max_length=255)
+    duration = serializers.CharField(max_length=20)
 
-# class MoviesDetailSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Movies
-#         fields = ['movie_id', 'name_movie', 'launch_year', 'sinopsis', 'duration', 'category', 'classification']
+    class Meta:
+        model = Movies
+        exclude = ('state', 'created_at', 'updated_at', 'deleted_at')
 
-#     """ Respresentación de pelicula con relaciones personalizada """
+    def to_representation(self, instance):
+        # Listado de una pelicula personalizado
 
-#     def to_representation(self, instance):
-#         return {
-#             'movie_id': instance.movie_id,
-#             'name_movie': instance.name_movie,
-#             'launch_year': instance.launch_year,
-#             'duration': instance.duration,
-#             'category': {
-#                 'category_id': instance.category.category_id,
-#                 'category_name': instance.category.category_name
-#             },
-#             'classification': {
-#                 'classification_id': instance.classification.classification_id,
-#                 'classification_name': instance.classification.classification_name
-#             },
-#             'sinopsis': instance.sinopsis
-#         }
+        return {
+            'movie_id': instance.movie_id,
+            'name_movie': instance.name_movie,
+            'launch_year': instance.launch_year,
+            'duration': instance.duration,
+            'sinopsis': instance.sinopsis,
+            'category': instance.category.category_name,
+            'classification': instance.classification.classification_name
+        }
+
+    def validate_name_movie(self, value):
+        # Validamos el nombre de la pelicula
+
+        if value.isnumeric():
+            msg = 'Asegurese que este campo contenga unicamente caracteres alfabeticos'
+            raise serializers.ValidationError(msg)
+
+        if Movies.objects.filter(name_movie=value).exists():
+            msg = f'Ya existe una pelicula con el nombre {value.upper()}'
+            raise serializers.ValidationError(msg)
+
+        return value.title()
+
+    def validate_launch_year(self, value):
+        actual_year = int(datetime.now().strftime("%Y"))
+
+        if value > actual_year or value < 1922:
+            msg = f'El año que usted ingreso no es valido. Asegurese que el año se encuentre entre {actual_year} y el año 1922'
+            raise serializers.ValidationError(msg)
+
+        return value
+
+    def validate_duration(self, value):
+        if len(value) > 3:
+            msg = 'Asegurese que haya ingresado el numero de minutos valido, no deberia de ser mayor a 3 digitos'
+            raise serializers.ValidationError(msg)
+
+        return f'{value} Minutos'

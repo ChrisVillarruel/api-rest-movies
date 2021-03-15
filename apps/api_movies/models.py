@@ -8,6 +8,8 @@ from apps.base.models import BaseModel
 
 
 class Movies(BaseModel):
+    # Modelo que hereda de Base model para la creación de una pelicula
+
     movie_id = models.AutoField(primary_key=True)
     name_movie = models.CharField(unique=True, max_length=100)
     launch_year = models.IntegerField()

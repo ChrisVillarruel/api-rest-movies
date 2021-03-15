@@ -6,7 +6,7 @@ from rest_framework import status
 
 # Modulos locales
 from apps.metodosExternos import msg_error, resource_created, resource_updated, resource_destroy, not_found
-from .serializers import MoviesSerializer, MoviesDetailSerializer
+from .serializers import MoviesSerializer
 from .models import Movies
 
 
@@ -112,12 +112,25 @@ class MoviesViewSet(ModelViewSet):
         if pk is None:
             return self.get_serializer().Meta.model.objects.filter(state=True)
 
-        return self.get_serializer().Meta.objects.filter(movie_id=pk, state=True).first()
+        return self.get_serializer().Meta.model.objects.filter(movie_id=pk, state=True).first()
 
     def create(self, request):
+        # Metodo encargado de crear una pelicula
 
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
 
         return Response(resource_created(), status=status.HTTP_201_CREATED)
+
+    def update(self, request, pk=None):
+        # Metodo encargado de actualizar una pelicula
+
+        queryset = self.get_queryset(pk)
+        if queryset:
+            serializer = self.serializer_class(queryset, data=request.data, partial=True)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+
+            return Response(resource_updated(), status=status.HTTP_200_OK)
+        return Response(not_found(), status=status.HTTP_404_NOT_FOUND)

@@ -20,7 +20,7 @@ Se actualizo casi todo el codigo fuente.
 - Implementación de routers.
 - Serializadores mas robustos.
 - Manejo de excepciones mas robusto.
-
+- Fichero de dependencias.
 
 
 # Diagrama Entidad Relación 

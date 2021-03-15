@@ -21,6 +21,7 @@ Se actualizo casi todo el codigo fuente.
 - Serializadores mas robustos.
 - Manejo de excepciones mas robusto.
 - Fichero de dependencias.
+- Elimincación logica de recursos
 
 
 # Diagrama Entidad Relación 

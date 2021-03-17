@@ -48,6 +48,7 @@ INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
 REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'exception_handler.custom_exception_handler',
     'NON_FIELD_ERRORS_KEY': 'error',
+    'DEFAULT_PAGINATION_CLASS': 'pagination.StandardResultsSetPagination'
 }
 
 

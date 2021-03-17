@@ -16,12 +16,19 @@ Aplicación web API para la creación de reseñas de peliculas. Cada reseña va 
 
 Se actualizo casi todo el codigo fuente.
 
-- Las vistas ahora trabajan con ViewSet.
+- Modelos relacionales serializados. 
+- Las vistas ahora trabajan con ViewSets.
 - Implementación de routers.
 - Serializadores mas robustos.
 - Manejo de excepciones mas robusto.
 - Fichero de dependencias.
 - Elimincación logica de recursos
+
+## Actualización | Martes 16 de marzo 2021.
+
+Se implemento la paginación en los listados de recursos.
+
+- Paginación del ViewSet CategoryMovies y Movies.
 
 
 # Diagrama Entidad Relación 

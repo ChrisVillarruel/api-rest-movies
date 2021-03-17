@@ -6,12 +6,14 @@ from rest_framework import status
 
 # from .serializers import CategorySerializers
 from apps.metodosExternos import msg_error, resource_created, resource_updated, resource_destroy, not_found
+from pagination import StandardResultsSetPagination
 from .serializers import MovieCategorySerializers
 from .models import MovieCategory
 
 
 class MovieCategoryViewSet(ModelViewSet):
     serializer_class = MovieCategorySerializers
+    pagination_class = StandardResultsSetPagination
 
     def get_queryset(self, pk=None):
         # Si pk es None, retornamos un listado. De lo contrario retornamos un objeto

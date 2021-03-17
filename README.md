@@ -1,28 +1,27 @@
-# Actualmente la aplicación sigue en desarrollo
+# Django Rest Framework - Reseñas de Peliculas
 
-## ¿Actualmente que esta haciendo la aplicación?
+Aplicación web API para la creación de reseñas de peliculas. Cada reseña va estar relacionada al usuario que realizo la reseña.
 
-- Creación de la entidad clasficiación.
+## Actualización | Hace 2 meses.
+
+- Creación de la entidad clasificación.
 - Creacion de la entidad categoria para una pelicula.
 - Creación de la entidad pelicula.
-- Serializadores para cada entidad.
+- Serialización para cada controlador.
 - Controladores para cada entidad.
 - Manejor local de URLS para cada controlador.
 - Validaciones de datos entre la capa del modelado y serializadores de django REST
-- Creación, Listado, Actualización, Actualización parcial y eliminación de regsitros para cada entidad.
-- Manejo de errores 400.
 
-## ¿Que le falta a la aplicación para ser terminada?
+## Actualización | Domingo 14 de marzo 2021.
 
-- Control de errores del Servidor (+500).
-- Sesiones.
-- Tokens de autenticación utilizando la libreria pyjwt de (JSON WEB TOKEN)
-- Paginación de datos.
-- Activación de cuentas.
-- Verificación de cuentas.
-- Inicio de sesión de terceros (Google, Facebook, Twitter )
-- Permisos Mixin.
-- Entidad reseñas.
+Se actualizo casi todo el codigo fuente.
+
+- Las vistas ahora trabajan con ViewSet.
+- Implementación de routers.
+- Serializadores mas robustos.
+- Manejo de excepciones mas robusto.
+- Fichero de dependencias.
+- Elimincación logica de recursos
 
 
 # Diagrama Entidad Relación 

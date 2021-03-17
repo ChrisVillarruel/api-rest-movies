@@ -6,12 +6,14 @@ from rest_framework import status
 
 # Modulos locales
 from apps.metodosExternos import msg_error, resource_created, resource_updated, resource_destroy, not_found
+from pagination import StandardResultsSetPagination
 from .serializers import MoviesSerializer
 from .models import Movies
 
 
 class MoviesViewSet(ModelViewSet):
     serializer_class = MoviesSerializer
+    pagination_class = StandardResultsSetPagination
 
     def get_queryset(self, pk=None):
         # Si pk es None, retornamos un listado. De lo contrario retornamos un objeto

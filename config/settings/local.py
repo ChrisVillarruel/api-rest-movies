@@ -1,5 +1,5 @@
 from .base import *
-
+from django.conf import settings
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -11,22 +11,13 @@ ALLOWED_HOSTS = []
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {},
-    'windows': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'moviesdb',
-        'USER': 'chris',
-        'PASSWORD': 'givc980909',
-        'HOST': 'localhost',
-        'PORT': 3306,
-    },
-    'linux': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'moviesdb',
-        'USER': 'chris',
-        'PASSWORD': 'givc980909',
-        'HOST': 'localhost',
-        'PORT': 3307,
+    'default': {
+        'ENGINE': settings.ENGINE,
+        'NAME': settings.NAME_SCHEMA,
+        'USER': settings.USERNAME,
+        'PASSWORD': settings.PASSWORD,
+        'HOST': settings.HOST,
+        'PORT': settings.PORT,
     }
 }
 

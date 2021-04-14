@@ -1,0 +1,10 @@
+__pycache__
+apps/__pycahce__
+apps/api_classification/__pycache__
+apps/api_classification/migrations
+apps/api_movie_category/__pycache__
+apps/api_movie_category/migrations
+apps/api_movies/__pycahce__
+apps/api_movies/migrations
+config/settings/database_info.py
+

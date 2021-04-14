@@ -4,7 +4,6 @@ import os
 from . import database_info
 
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -128,7 +127,7 @@ STATIC_URL = '/static/'
 Si usted clono el repositorio ingrese sus propias credenciales
 de su base de datos.
 
-Si usted desea utilizar otro cliente de base de datos, modifique 
+Si usted desea utilizar otro cliente de base de datos, modifique
 ENGINE.
 
 
@@ -140,9 +139,3 @@ USERNAME = database_info.USERNAME
 PASSWORD = database_info.PASSWORD
 HOST = database_info.HOST
 PORT = database_info.PORT
-
-
-
-
-
-

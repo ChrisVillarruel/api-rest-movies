@@ -42,13 +42,14 @@ $ python.exe -m pip install --upgrade pip
 $ pip install -r requirements.txt
 ```
 
-Abrimos el repositorio con editor de codigo y nos dirigimos: config/settigs/base.py
+Abrimos el repositorio con un editor de codigo y nos dirigimos a: config/settigs/base.py
 
 ```sh
 # config/settigs/base.py
-Borramos la importación: from . import database_info
+# Borramos la importación
+from . import database_info
 
-# Configuramos nuestra base de datos.
+# Cofigure su base de datos.
 ENGINE = 'django.db.backends.mysql'
 NAME_SCHEMA = database_info.NAME_SCHEMA
 USERNAME = database_info.USERNAME
@@ -62,7 +63,7 @@ Para finalizar realizamos migraciones:
 # dentro del modulo raiz de api_rest_movies ejecutamos.
 $ python manage.py migrate
 
-# Levantamos el servidor
+# Ahí mismo levantamos el servidor.
 $ python manage.py runserver
 ```
 

@@ -1,6 +1,9 @@
 
 from pathlib import Path
 import os
+from . import database_info
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -107,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'es-mx'
 
-TIME_ZONE = 'America/Mexico_city'
+TIME_ZONE = 'America/Mexico_City'
 
 USE_I18N = True
 
@@ -120,3 +123,26 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+"""
+Si usted clono el repositorio ingrese sus propias credenciales
+de su base de datos.
+
+Si usted desea utilizar otro cliente de base de datos, modifique 
+ENGINE.
+
+
+"""
+
+ENGINE = 'django.db.backends.mysql'
+NAME_SCHEMA = database_info.NAME_SCHEMA
+USERNAME = database_info.USERNAME
+PASSWORD = database_info.PASSWORD
+HOST = database_info.HOST
+PORT = database_info.PORT
+
+
+
+
+
+

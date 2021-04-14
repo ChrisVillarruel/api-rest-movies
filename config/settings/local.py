@@ -11,13 +11,22 @@ ALLOWED_HOSTS = []
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'default': {},
+    'windows': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'moviesdb',
         'USER': 'chris',
         'PASSWORD': 'givc980909',
         'HOST': 'localhost',
         'PORT': 3306,
+    },
+    'linux': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'moviesdb',
+        'USER': 'chris',
+        'PASSWORD': 'givc980909',
+        'HOST': 'localhost',
+        'PORT': 3307,
     }
 }
 

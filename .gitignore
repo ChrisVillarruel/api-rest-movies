@@ -1,10 +1,19 @@
 __pycache__
-apps/__pycahce__
+
+Movies.sql
+
+apps/__pycache__
+
 apps/api_classification/__pycache__
 apps/api_classification/migrations
+
 apps/api_movie_category/__pycache__
 apps/api_movie_category/migrations
-apps/api_movies/__pycahce__
+
+apps/api_movies/__pycache__
 apps/api_movies/migrations
+
+config/__pycache__
+config/settings/__pycache__
 config/settings/database_info.py
 

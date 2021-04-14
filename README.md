@@ -31,6 +31,15 @@ Se implemento la paginación en los listados de recursos.
 - Paginación del ViewSet CategoryMovies y Movies.
 
 
+## Actualización | Martes 13 de abril 2021.
+
+Al clonar este repositorio, la configuración de la base de datos sera mas sencilla.
+
+- Posibilidad de configurar una base de datos en cualquier plataforma, Windows, IOS, GNU Linux.
+
+
+
+
 # Diagrama Entidad Relación 
 
 ![This is a alt text.](/images_github/mer.png "This is a sample image.")

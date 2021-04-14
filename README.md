@@ -2,6 +2,73 @@
 
 Aplicación web API para la creación de reseñas de peliculas. Cada reseña va estar relacionada al usuario que realizo la reseña.
 
+### Instalación.
+
+##### Requerimientos Externos:
+- Gestor de base de datos Realcional o no Relacional.
+- Python 3.6 en adelante.
+- Manejo de paquetes PIP ¡actualizado!.
+- Editor de codigo, el que usted guste.
+- Herramienta para la comunicación HTTP postman.
+
+##### Pasos para utililizar la aplicación de manera local.
+
+Clonamos el repositorio dentro de un directorio.
+```sh
+$ git clone https://github.com/ChrisVillarruel/api-rest-movies.git
+```
+
+Creamos un entorno virtual.
+- Windows 
+```sh
+$ python -m venv nombre_entorno
+$ cd nombre_entorno
+$ cd Scripts/activate
+```
+- GNU Linux
+```sh
+$ python3 -m venv nombre_entorno
+$ cd nombre_entorno
+$ source bin/activate
+```
+
+Instalamos dependencias
+
+```sh
+# actualizamos pip
+$ python.exe -m pip install --upgrade pip
+
+# Dentro del repositorio master* instalamos las dependencias
+$ pip install -r requirements.txt
+```
+
+Abrimos el repositorio con un editor de codigo y nos dirigimos a: config/settigs/base.py
+
+```sh
+# config/settigs/base.py
+# Borramos la importación
+from . import database_info
+
+# Cofigure su base de datos.
+ENGINE = 'django.db.backends.mysql'
+NAME_SCHEMA = database_info.NAME_SCHEMA
+USERNAME = database_info.USERNAME
+PASSWORD = database_info.PASSWORD
+HOST = database_info.HOST
+PORT = database_info.PORT
+```
+
+Para finalizar realizamos migraciones:
+```sh
+# dentro del modulo raiz de api_rest_movies ejecutamos.
+$ python manage.py migrate
+
+# Ahí mismo levantamos el servidor.
+$ python manage.py runserver
+```
+
+
+
 ## Actualización | Hace 2 meses.
 
 - Creación de la entidad clasificación.

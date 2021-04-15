@@ -7,6 +7,8 @@ apps/__pycache__
 apps/api_classification/__pycache__
 apps/api_classification/migrations
 
+apps/base/__pycache__
+
 apps/api_movie_category/__pycache__
 apps/api_movie_category/migrations
 

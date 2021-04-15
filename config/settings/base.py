@@ -38,6 +38,7 @@ LOCAL_APPS = [
     'apps.api_classification',
     'apps.api_movie_category',
     'apps.api_movies',
+    'apps.users',
 ]
 
 # third apps
@@ -139,3 +140,9 @@ USERNAME = database_info.USERNAME
 PASSWORD = database_info.PASSWORD
 HOST = database_info.HOST
 PORT = database_info.PORT
+
+
+# Modelo usuario personalizado
+AUTH_USER_MODEL = 'users.User'
+
+

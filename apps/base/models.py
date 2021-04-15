@@ -12,3 +12,12 @@ class BaseModel(models.Model):
 
     class Meta:
         abstract = True
+
+
+class UserToken(models.Model):
+    access_token = models.CharField(max_length=500, null=True, default=None)
+    refresh_token = models.CharField(max_length=500, null=True, default=None)
+
+    class Meta:
+        abstract = True
+

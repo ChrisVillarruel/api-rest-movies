@@ -7,10 +7,11 @@ from django.conf import settings
 # modulos locales
 from .timezone import generate_expire_token, get_timezone
 
-def generate_token(email, username, days=0, minutes=0):
+def generate_token(email, username, token,days=0, minutes=0):
     jwt_token = jwt.encode({
         'email': email,
         'username': username,
+        'token': token,
         'type': 'bearer',
         'exp': generate_expire_token(days=days, minutes=minutes), 
         'iat': get_timezone()

@@ -15,6 +15,10 @@ apps/api_movie_category/migrations
 apps/api_movies/__pycache__
 apps/api_movies/migrations
 
+apps/users/__pycache__
+apps/users/migrations
+apps/users/auth/__pycahce__
+
 config/__pycache__
 config/settings/__pycache__
 config/settings/database_info.py

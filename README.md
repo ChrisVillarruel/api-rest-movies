@@ -104,7 +104,15 @@ Al clonar este repositorio, la configuración de la base de datos sera mas senci
 
 - Posibilidad de configurar una base de datos en cualquier plataforma, Windows, IOS, GNU Linux.
 
+## Actualización | Sabado 17 de abril 2021.
 
+Actualizaciones mas importantes:
+
+- Creación de la app Users.
+- Modelado personalizado de los usuarios.
+- Generación de JWT.
+- Autenticación con JWT.
+- Creación y actualización automatica de JWT.
 
 
 # Diagrama Entidad Relación 

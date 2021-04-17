@@ -5,6 +5,10 @@ from django.db import models
 # Modulos locales
 from . import manager
 from apps.base.models import BaseModel, UserToken
+from .auth.generate_token import generate_token 
+from .auth.timezone import get_timezone
+from .auth.generate_token import generate_token
+from .auth.get_expired_token import get_expired_date_token
 
 class User(AbstractBaseUser, PermissionsMixin, BaseModel, UserToken):
     user_id = models.AutoField(auto_created=True, primary_key=True, serialize=True)
@@ -32,14 +36,36 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel, UserToken):
     def get_email(self):
         return self.email.lower()
 
-    def get_username(self):
-        return self.username.lower()
-
     def get_fullname(self):
         full_name = f'{first_name.title()} {last_name.title()}'
         return full_name
 
+    def token():
+        """
+        Retornamos los tokens de autorización 
 
-    
+
+        """
+        return {
+            'access_token':self.access_token, 
+            'refresh_token':self.refresh_token
+        }
+
+
+    def save(self, *args, **kwargs):
+        current_date = get_timezone().strftime('%y%m%d')
+        
+        if self.access_token is None and self.refresh_token is None:
+            self.access_token = generate_token(self.get_email(), self.username, token='access', minutes=30)
+            self.refresh_token = generate_token(self.get_email(), self.username, token='refresh', days = 60)
+
+        if current_date >= get_expired_date_token(self.refresh_token):                        
+            self.refresh_token = generate_token(self.get_email(), self.username, token='refresh', days=60)
+
+
+        super().save(*args, **kwargs)
+
+
+
 
 

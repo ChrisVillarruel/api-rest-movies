@@ -15,8 +15,8 @@ class BaseModel(models.Model):
 
 
 class UserToken(models.Model):
-    access_token = models.CharField(max_length=500, null=True, default=None)
-    refresh_token = models.CharField(max_length=500, null=True, default=None)
+    access_token = models.CharField(max_length=500, null=True, default=None, blank=True)
+    refresh_token = models.CharField(max_length=500, null=True, default=None, blank=True)
 
     class Meta:
         abstract = True
